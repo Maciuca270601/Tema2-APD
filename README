@@ -1,0 +1,30 @@
+Student: Maciuca Alexandru Petru
+Group: 334CA
+Homework: Manager de comenzi de Black Friday in Java
+Course: Parallel and Distributed Algorithms
+
+## About the code
+
+    The homework follows the replicated workers design pattern and it uses
+    as workers two different types of threads.
+
+    The first type are the order threads that will eventually create the
+    second type of threads, the product ones. These threads are handling
+    one command at a time and after all products are shipped, they mark
+    the command as being shipped entirely.
+
+    The second thread type consists in the product threads that search if a
+    command has all its products in the order_products.txt file in which case
+    marks all the products individually as being shipped.
+
+## The implementation
+
+    I have used executorService as my replicatedWorkers design pattern and
+    the two type of workers have been: OrderThreads and ProductThreads.
+    Because there was a limitation which specified that all the OrderThreads
+    have to wait their respective ProductThreads, I have used an array of
+    Futures that should act as a synchronizing item for the ProductThreads.
+    Each OrderThread  is starting numberOfProducts ProductThreads and is
+    submitting them to the commonly shared executor.
+
+    In order to avoid critic zones I have used synchronized blocks when needed.
